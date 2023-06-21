@@ -236,4 +236,18 @@ class BinarySearchTree {
         dfs(this.root);
         return data;
     }
+
+    // Find the maximum depth of any given node.
+    findDepth(node) {
+        // ie: number of nodes along the longest path from the root node down to the farthest leaf node.
+        if (node) {
+            // Recursively find the left side depth.
+            let leftDepth = findDepth(node.left);
+            // Recursively find the right side depth.
+            let rightDepth = findDepth(node.right);
+            // Return the largest out of both + 1 everytime we pop off the call stack.
+            return Math.max(leftDepth, rightDepth) + 1;
+        }
+        return 0;
+    }
 }
