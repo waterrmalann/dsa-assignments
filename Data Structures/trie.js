@@ -18,8 +18,8 @@ class Trie {
         this.root = new Node('');
     }
 
+    // Insert a word, character-by-character into the Trie.
     insert(word) {
-        // Insert a word, character-by-character into the Trie.
         let current = this.root;
         // We loop through all the characters of the word.
         for (let i = 0; i < word.length; i++) {
@@ -37,8 +37,10 @@ class Trie {
         current.isEndofWord = true;
     }
     
+    // Helper function to get the node at the end of a word.
     _getNode(word) {
-        // Helper function to get the node at the end of a word.
+        // If we have an empty string, we return the root value.
+        if (word === '') return this.root;
         let current = this.root;
         // We loop through all the characters.
         for (let i = 0; i < word.length; i++) {
@@ -55,29 +57,31 @@ class Trie {
         return current;
     }
 
+    // Determine whether we have anything that starts with a word in our Trie.
     startsWith(word) {
-        // Determine whether we have anything that starts with a word in our Trie.
         // Call our helper function to get the node(?) at the end of the word.
         let node = this._getNode(word);
         // We coerce it into a boolean and return that.
         return !!node;
     }
 
+    // Return whether a word exists in our Trie or not.
     search(word) {
-        // Return whether a word exists in our Trie or not.
         // Call our helper function get the last node(?) at the end of the word.
         let node = this._getNode(word);
         // We have to make sure the node is not null, but also that the node is an end of word.
         return (node && node.isEndofWord);
     }
 
-    allWords() {
-        // Return all the words from our Trie.
+    // Return all the words from our Trie.
+    allWords(starting = '') {
+        // Figure out where we should start, by default we start from the root.
+        let startingNode = this._getNode(starting);
         // Create an array to hold the words.
         let words = [];
         // Call the helper function from the root, 
         // given an empty string to construct and `words` array to push to.
-        this._findAllWords(this.root, '', words);
+        this._findAllWords(startingNode, starting, words);
         // Return the words array.
         return words;
     }
