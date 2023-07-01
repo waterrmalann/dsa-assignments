@@ -37,8 +37,8 @@ class UndirectedGraph {
 
     // Remove an edge from the adjacency list.
     removeEdge(v1, v2) {
-        this.adjacencyList[v1] = this.adjacencyList.filter(v=> v !== v2);
-        this.adjacencyList[v2] = this.adjacencyList.filter(v=> v !== v1);
+        this.adjacencyList[v1] = this.adjacencyList.filter[v1](v=> v !== v2);
+        this.adjacencyList[v2] = this.adjacencyList.filter[v2](v=> v !== v1);
     }
     
     // Depth-First-Search w/ Stack (Iterative)
